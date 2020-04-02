@@ -1,9 +1,6 @@
 package com.company.Services;
 
-import com.company.Events.ConcertEvent;
-import com.company.Events.PartyEvent;
-import com.company.Events.PoolPartyEvent;
-import com.company.Events.StandUpEvent;
+import com.company.Events.*;
 import com.company.Guest.Guest;
 import com.company.Locations.*;
 import com.company.Reservations.Reservation;
@@ -13,23 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Service {
-    private List<Location> locations = new ArrayList<>(Arrays.asList(
-            new PubLocation("Shelter", "Bucharest", "RO",
-                    200, 40, 4, true, false),
-            new PoolLocation("Pool", "Bucharest", "RO",
-                    200, true, true,false),
-            new RestaurantLocation("Papito", "Cluj", "RO",
-                    500, 100, 5, true, 100),
-            new MusicHallLocation("Sala Palatului", "Bucharest", "RO",
-                    4000)
-    ));
+    private List<Location> locations;
 
-    private Set<Reservation> reservations = new TreeSet<Reservation>(Arrays.asList(
-            new Reservation(locations.get(0), new StandUpEvent("Costel Stand-up", "12/05/2020", new Guest("Costel"), 50, 80)),
-            new Reservation(locations.get(1), new PoolPartyEvent("Pool party", "25/08/2020", 50)),
-            new Reservation(locations.get(2), new PartyEvent("Wedding", "09/09/2020", new Guest("Guta"), new Guest("Ciolan"))),
-            new Reservation(locations.get(3), new ConcertEvent("Vita de vie Concert", "04/04/2020", new Guest("Vita de vie"), 50, 75, 100))
-    ));
+    private Set<Reservation> reservations;
 
     private Scanner in = new Scanner(System.in).useDelimiter("\n");
 
@@ -155,7 +138,7 @@ public class Service {
     }
 
     // 7. Method to get all reservations at date
-    public List<Reservation> getReservationOnDate(String date) throws ParseException {
+    public List<Reservation> getReservationsOnDate(String date) throws ParseException {
         Date realDate = new SimpleDateFormat("dd/MM/yyyy").parse(date);
         Iterator<Reservation> itr = reservations.iterator();
         List<Reservation> dateReservations = new ArrayList<>();
@@ -166,6 +149,12 @@ public class Service {
             }
         }
         return dateReservations;
+    }
+
+    public boolean checkLocationAvailability(String date, String name) throws ParseException {
+        if(!this.getReservationsOnDate(date).isEmpty() && name.equals(this.getReservationsOnDate(date).get(0).getLocation().getName()))
+            return false;
+        return true;
     }
 
     // 8. Method to get reservations between two dates
@@ -208,36 +197,124 @@ public class Service {
         return typeReservations;
     }
 
+    public String check(String date, String name) throws ParseException {
+        while(true) {
+            if(!this.checkLocationAvailability(date, name)) {
+                System.out.print("Sorry, that date is taken, enter new one (DD/MM/YYYY): ");
+                date = in.next();
+            }
+            else {
+                return date;
+            }
+        }
+    }
+
     // 10. Make reservation
-    public void makeReservation() {
+    public void makeReservation() throws ParseException {
         System.out.println("Hi! What kind of event would you like to organize?");
         System.out.println("1. Concert" + "\n" + "2. Wedding" + "\n" + "3. Party" + "\n" + "4. Stand-up Comedy");
         System.out.print("Your choice: "); String choice = in.next();
         while (true) {
+            List<Location> availableLocations = new ArrayList<>();
+            int i = 0;
             if (choice.equals("1")) {
-                List<Location> availableLocations = new ArrayList<>();
                 for (Location loc : this.getLocations()) {
                     if(loc instanceof MusicHallLocation || loc instanceof PubLocation) {
                         availableLocations.add(loc);
                     }
                 }
-                int i = 0;
                 System.out.println("Please select one of available locations");
                 for (Location loc : availableLocations) {
                     i++;
                     System.out.println(i + ". " + loc.getName() + ", " + loc.getCity());
                 }
                 String newChoice = in.next();
+                Location location = availableLocations.get(Integer.parseInt(newChoice)-1);
+                System.out.print("Event name: "); String name = in.next();
+                System.out.print("Event date (DD/MM/YYYY): "); String date = in.next();
+                check(date, location.getName());
+                System.out.print("Singer/band name: "); String singerName = in.next(); Guest singer = new Guest(singerName);
+                System.out.print("Normal ticket price: "); int normalTicketPrice = in.nextInt();
+                System.out.print("Gold ticket price: "); int goldTicketPrice = in.nextInt();
+                System.out.print("Vip ticket price: "); int vipTicketPrice = in.nextInt();
+                Event event = new ConcertEvent(name, date, singer, normalTicketPrice, goldTicketPrice, vipTicketPrice);
+                reservations.add(new Reservation(location, event));
+                break;
             } else if (choice.equals("2")) {
-
+                for (Location loc : this.getLocations()) {
+                    if(loc instanceof RestaurantLocation) {
+                        availableLocations.add(loc);
+                    }
+                }
+                System.out.println("Please select one of available locations");
+                for (Location loc : availableLocations) {
+                    i++;
+                    System.out.println(i + ". " + loc.getName() + ", " + loc.getCity());
+                }
+                String newChoice = in.next();
+                Location location = availableLocations.get(Integer.parseInt(newChoice)-1);
+                System.out.print("Event name: "); String name = in.next();
+                System.out.print("Event date (DD/MM/YYYY): "); String date = in.next();
+                check(date, location.getName());
+                System.out.print("Singer/band name: "); String singerName = in.next(); Guest singer = new Guest(singerName);
+                System.out.print("Singer/band name: "); String photographerName = in.next(); Guest photographer = new Guest(singerName);
+                Event event = new PartyEvent(name, date, singer, photographer);
+                reservations.add(new Reservation(location, event));
+                break;
             } else if (choice.equals("3")) {
-
+                for (Location loc : this.getLocations()) {
+                    if(loc instanceof PoolLocation) {
+                        availableLocations.add(loc);
+                    }
+                }
+                System.out.println("Please select one of available locations");
+                for (Location loc : availableLocations) {
+                    i++;
+                    System.out.println(i + ". " + loc.getName() + ", " + loc.getCity());
+                }
+                String newChoice = in.next();
+                Location location = availableLocations.get(Integer.parseInt(newChoice)-1);
+                System.out.print("Event name: "); String name = in.next();
+                System.out.print("Event date (DD/MM/YYYY): "); String date = in.next();
+                check(date, location.getName());
+                System.out.print("Ticket price: "); int ticketPrice = in.nextInt();
+                Event event = new PoolPartyEvent(name, date, ticketPrice);
+                reservations.add(new Reservation(location, event));
+                break;
             } else if (choice.equals("4")) {
-
+                for (Location loc : this.getLocations()) {
+                    if(loc instanceof PubLocation) {
+                        availableLocations.add(loc);
+                    }
+                }
+                System.out.println("Please select one of available locations");
+                for (Location loc : availableLocations) {
+                    i++;
+                    System.out.println(i + ". " + loc.getName() + ", " + loc.getCity());
+                }
+                String newChoice = in.next();
+                Location location = availableLocations.get(Integer.parseInt(newChoice)-1);
+                System.out.print("Event name: "); String name = in.next();
+                System.out.print("Event date (DD/MM/YYYY): "); String date = in.next();
+                check(date, location.getName());
+                System.out.print("Comedian: "); String comedianName = in.next(); Guest comedian = new Guest(comedianName);
+                System.out.print("Normal ticket price: "); int normalTicketPrice = in.nextInt();
+                System.out.print("VIP ticket price: "); int goldTicketPrice = in.nextInt();
+                Event event = new StandUpEvent(name, date, comedian, normalTicketPrice, goldTicketPrice);
+                reservations.add(new Reservation(location, event));
+                break;
             } else {
                 System.out.println("Please enter available operation");
                 System.out.print("Your choice: "); choice = in.next();
             }
         }
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

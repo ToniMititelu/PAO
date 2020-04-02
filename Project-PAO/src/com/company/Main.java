@@ -1,12 +1,16 @@
 package com.company;
 
+import com.company.Events.ConcertEvent;
+import com.company.Events.PartyEvent;
+import com.company.Events.PoolPartyEvent;
+import com.company.Events.StandUpEvent;
+import com.company.Guest.Guest;
 import com.company.Locations.*;
 import com.company.Reservations.Reservation;
 import com.company.Services.Service;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -14,14 +18,29 @@ public class Main {
 	// write your code here
         try {
             Service s = new Service();
+
+            // Added only for testing
+            s.setLocations(new ArrayList<>(Arrays.asList(
+                    new PubLocation("Shelter", "Bucharest", "RO",
+                            200, 40, 4, true, false),
+                    new PoolLocation("Pool", "Bucharest", "RO",
+                            200, true, true,false),
+                    new RestaurantLocation("Papito", "Cluj", "RO",
+                            500, 100, 5, true, 100),
+                    new MusicHallLocation("Sala Palatului", "Bucharest", "RO",
+                            4000)
+            )));
+
+            s.setReservations(new TreeSet<Reservation>(Arrays.asList(
+                    new Reservation(s.getLocations().get(0), new StandUpEvent("Costel Stand-up", "12/05/2020", new Guest("Costel"), 50, 80)),
+                    new Reservation(s.getLocations().get(1), new PoolPartyEvent("Pool party", "25/08/2020", 50)),
+                    new Reservation(s.getLocations().get(2), new PartyEvent("Wedding", "09/09/2020", new Guest("Guta"), new Guest("Ciolan"))),
+                    new Reservation(s.getLocations().get(3), new ConcertEvent("Vita de vie Concert", "04/04/2020", new Guest("Vita de vie"), 50, 75, 100))
+            )));
+
             Scanner in = new Scanner(System.in).useDelimiter("\n");
-            System.out.println("Hi there! Please choose your action: ");
-            System.out.println("1. See all locations" + "\n" + "2. See locations of a type" + "\n" + "3. Add new location" + "\n"
-                    + "4. Get locations in a city" + "\n" + "5. Check if a location is available by name" + "\n"
-                    + "6. See all reservations" + "\n" + "7. See all reservation at a date" + "\n"
-                    + "8. See all reservations between two dates" + "\n" + "9. See reservations at one type of location"
-                    + "\n" + "0. Exit");
-            System.out.print("Your choice: "); String choice = in.next();
+            menu(); String choice = in.next();
+            System.out.println();
             while (true) {
                 if (choice.equals("1")) {
                     for (Location loc : s.getLocations()) {
@@ -62,7 +81,7 @@ public class Main {
                 } else if (choice.equals("7")) {
                     System.out.print("Enter date in the following format DD/MM/YYYY: ");
                     String date = in.next();
-                    List<Reservation> myList = s.getReservationOnDate(date);
+                    List<Reservation> myList = s.getReservationsOnDate(date);
                     for (Reservation reservation : myList) {
                         System.out.println(reservation.getLocation().getName() + ", "
                                 + reservation.getEvent().getName() + ", " + reservation.getEventDate());
@@ -84,15 +103,27 @@ public class Main {
                         System.out.println(reservation.getLocation().getName() + ", "
                                 + reservation.getEvent().getName() + ", " + reservation.getEventDate());
                     }
+                } else if (choice.equals("10")) {
+                    s.makeReservation();
                 } else if (choice.equals("0")) {
                     break;
                 } else {
                     System.out.println("Please choose from possible actions");
                 }
-                System.out.print("Another action: "); choice = in.next();
+                menu(); choice = in.next(); System.out.println();
             }
         } catch (NullPointerException | ParseException e) {
             System.out.println("Mornings like this..");
         }
+    }
+
+    public static void menu() {
+        System.out.println("\nHi there! Please choose your action: ");
+        System.out.println("1. See all locations\n2. See locations of a type\n3. Add new location\n"
+                + "4. Get locations in a city\n5. Check if a location is available by name\n"
+                + "6. See all reservations\n7. See all reservation at a date\n"
+                + "8. See all reservations between two dates\n9. See reservations at one type of location\n"
+                + "10. Make reservation\n0. Exit");
+        System.out.print("Your choice: ");
     }
 }
