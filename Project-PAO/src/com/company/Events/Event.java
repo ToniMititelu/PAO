@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Event {
+public abstract class Event {
     private String name;
     private String date;
 
