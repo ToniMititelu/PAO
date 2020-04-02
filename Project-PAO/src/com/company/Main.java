@@ -82,7 +82,7 @@ public class Main {
                         break;
                     }
                     case "6" : {
-                        s.deleteLocation();
+                        s.deleteLocation(); break;
                     }
                     case "7" : {
                         for (Reservation reservation : s.getReservations()) {
