@@ -17,6 +17,7 @@ public class Service {
     private Scanner in = new Scanner(System.in).useDelimiter("\n");
 
     public Service() {
+
     }
 
     // 1. Method to get all possible locations
@@ -132,12 +133,24 @@ public class Service {
         return false;
     }
 
-    // 6. Method to get all reservations
+    // 6. Delete a location
+    public void deleteLocation() {
+        System.out.println("Choose one of the following locations to delete: ");
+        int index = 1;
+        for(Location location : this.locations) {
+            System.out.println(index + ". " + location.getName() + ", " + location.getCity());
+            index++;
+        }
+        index = Integer.parseInt(in.next());
+        this.locations.remove(index-1);
+    }
+
+    // 7. Method to get all reservations
     public Set<Reservation> getReservations() {
         return reservations;
     }
 
-    // 7. Method to get all reservations at date
+    // 8. Method to get all reservations at date
     public List<Reservation> getReservationsOnDate(String date) throws ParseException {
         Date realDate = new SimpleDateFormat("dd/MM/yyyy").parse(date);
         Iterator<Reservation> itr = reservations.iterator();
@@ -157,7 +170,7 @@ public class Service {
         return true;
     }
 
-    // 8. Method to get reservations between two dates
+    // 9. Method to get reservations between two dates
     public List<Reservation> getReservationBetweenDates(String date1, String date2) throws ParseException {
         Date realDate1 = new SimpleDateFormat("dd/MM/yyyy").parse(date1);
         Date realDate2 = new SimpleDateFormat("dd/MM/yyyy").parse(date2);
@@ -178,7 +191,7 @@ public class Service {
         return dateReservations;
     }
 
-    // 9. Get all reservation at one type of location
+    // 10. Get all reservation at one type of location
     public List<Reservation> getReservationAtTypeOfLocation(String typeOfLocation) {
         Iterator<Reservation> itr = reservations.iterator();
         List<Reservation> typeReservations = new ArrayList<>();
@@ -209,7 +222,7 @@ public class Service {
         }
     }
 
-    // 10. Make reservation
+    // 11. Make reservation
     public void makeReservation() throws ParseException {
         System.out.println("Hi! What kind of event would you like to organize?");
         System.out.println("1. Concert" + "\n" + "2. Wedding" + "\n" + "3. Party" + "\n" + "4. Stand-up Comedy");
@@ -310,6 +323,7 @@ public class Service {
         }
     }
 
+    // 12. Remove a reservation
     public void removeReservation() throws ParseException {
         System.out.println("Choose reservation to be removed: ");
         int i = 1;

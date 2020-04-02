@@ -21,14 +21,10 @@ public class Main {
 
             // Added only for testing
             s.setLocations(new ArrayList<>(Arrays.asList(
-                    new PubLocation("Shelter", "Bucharest", "RO",
-                            200, 40, 4, true, false),
-                    new PoolLocation("Pool", "Bucharest", "RO",
-                            200, true, true,false),
-                    new RestaurantLocation("Papito", "Cluj", "RO",
-                            500, 100, 5, true, 100),
-                    new MusicHallLocation("Sala Palatului", "Bucharest", "RO",
-                            4000)
+                    new PubLocation("Shelter", "Bucharest", "RO", 200, 40, 4, true, false),
+                    new PoolLocation("Pool", "Bucharest", "RO", 200, true, true,false),
+                    new RestaurantLocation("Papito", "Cluj", "RO", 500, 100, 5, true, 100),
+                    new MusicHallLocation("Sala Palatului", "Bucharest", "RO", 4000)
             )));
 
             s.setReservations(new TreeSet<Reservation>(Arrays.asList(
@@ -86,13 +82,16 @@ public class Main {
                         break;
                     }
                     case "6" : {
+                        s.deleteLocation();
+                    }
+                    case "7" : {
                         for (Reservation reservation : s.getReservations()) {
                             System.out.println(reservation.getLocation().getName() + ", "
                                     + reservation.getEvent().getName() + ", " + reservation.getEventDate());
                         }
                         break;
                     }
-                    case "7" : {
+                    case "8" : {
                         System.out.print("Enter date in the following format DD/MM/YYYY: ");
                         String date = in.next();
                         List<Reservation> myList = s.getReservationsOnDate(date);
@@ -102,7 +101,7 @@ public class Main {
                         }
                         break;
                     }
-                    case "8" : {
+                    case "9" : {
                         System.out.print("Enter first date in the following format DD/MM/YYYY: ");
                         String date1 = in.next();
                         System.out.print("Enter second date in the following format DD/MM/YYYY: ");
@@ -114,7 +113,7 @@ public class Main {
                         }
                         break;
                     }
-                    case "9" : {
+                    case "10" : {
                         System.out.println("Type of location accepted: Music Hall, Pool, Pub, Restaurant");
                         System.out.print("Your choice: ");
                         String type = in.next();
@@ -124,11 +123,11 @@ public class Main {
                         }
                         break;
                     }
-                    case "10" : {
+                    case "11" : {
                         s.makeReservation();
                         break;
                     }
-                    case "11" : {
+                    case "12" : {
                         s.removeReservation();
                         break;
                     }
@@ -149,10 +148,10 @@ public class Main {
     public static void menu() {
         System.out.println("\nHi there! Please choose your action: ");
         System.out.println("1. See all locations\n2. See locations of a type\n3. Add new location\n"
-                + "4. Get locations in a city\n5. Check if a location is available by name\n"
-                + "6. See all reservations\n7. See all reservation at a date\n"
-                + "8. See all reservations between two dates\n9. See reservations at one type of location\n"
-                + "10. Make reservation\n11. Remove reservation\n0. Exit");
+                + "4. Get locations in a city\n5. Check if a location is available by name\n6. Remove location\n"
+                + "7. See all reservations\n8. See all reservation at a date\n"
+                + "9. See all reservations between two dates\n10. See reservations at one type of location\n"
+                + "11. Make reservation\n12. Remove reservation\n0. Exit");
         System.out.print("Your choice: ");
     }
 }
