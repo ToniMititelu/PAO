@@ -10,6 +10,10 @@ public class Reservation implements Comparable<Reservation> {
     private Location location;
     private Event event;
 
+    public Reservation() {
+
+    }
+
     public Reservation(Location location, Event event) {
         this.location = location;
         this.event = event;

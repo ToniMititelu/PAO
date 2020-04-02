@@ -310,6 +310,24 @@ public class Service {
         }
     }
 
+    public void removeReservation() throws ParseException {
+        System.out.println("Choose reservation to be removed: ");
+        int i = 1;
+        for(Reservation reservation : reservations) {
+            System.out.println(i + ". " + reservation.getLocation().getName() + ", " + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+            i++;
+        }
+        int indexToRemove = in.nextInt();
+        Iterator<Reservation> it = reservations.iterator();
+        int j = 0;
+        Reservation toRemove = new Reservation();
+        while(j < indexToRemove && it.hasNext()) {
+            toRemove = it.next();
+            j++;
+        }
+        reservations.remove(toRemove);
+    }
+
     public void setLocations(List<Location> locations) {
         this.locations = locations;
     }

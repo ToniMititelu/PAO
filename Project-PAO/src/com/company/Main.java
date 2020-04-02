@@ -39,79 +39,108 @@ public class Main {
             )));
 
             Scanner in = new Scanner(System.in).useDelimiter("\n");
-            menu(); String choice = in.next();
-            System.out.println();
-            while (true) {
-                if (choice.equals("1")) {
-                    for (Location loc : s.getLocations()) {
-                        if (loc instanceof MusicHallLocation) {
-                            System.out.println("Music Hall, " + loc.getName() + ", " + loc.getCity());
-                        } else if (loc instanceof PoolLocation) {
-                            System.out.println("Pool, " + loc.getName() + ", " + loc.getCity());
-                        } else if (loc instanceof PubLocation) {
-                            System.out.println("Pub, " + loc.getName() + ", " + loc.getCity());
-                        } else if (loc instanceof RestaurantLocation) {
-                            System.out.println("Restaurant, " + loc.getName() + ", " + loc.getCity());
+            boolean end = false;
+            do {
+                menu(); String choice = in.next(); System.out.println();
+                switch (choice) {
+                    case "1" : {
+                        for (Location loc : s.getLocations()) {
+                            if (loc instanceof MusicHallLocation) {
+                                System.out.println("Music Hall, " + loc.getName() + ", " + loc.getCity());
+                            } else if (loc instanceof PoolLocation) {
+                                System.out.println("Pool, " + loc.getName() + ", " + loc.getCity());
+                            } else if (loc instanceof PubLocation) {
+                                System.out.println("Pub, " + loc.getName() + ", " + loc.getCity());
+                            } else if (loc instanceof RestaurantLocation) {
+                                System.out.println("Restaurant, " + loc.getName() + ", " + loc.getCity());
+                            }
                         }
+                        break;
                     }
-                } else if (choice.equals("2")) {
-                    System.out.println("Type of location accepted: Music Hall, Pool, Pub, Restaurant");
-                    System.out.print("Your choice: "); String type = in.next();
-                    for(Location location : s.getLocationsOfType(type)) {
-                        System.out.println(type + ", " + location.getName());
+                    case "2" : {
+                        System.out.println("Type of location accepted: Music Hall, Pool, Pub, Restaurant");
+                        System.out.print("Your choice: ");
+                        String type = in.next();
+                        for (Location location : s.getLocationsOfType(type)) {
+                            System.out.println(type + ", " + location.getName());
+                        }
+                        break;
                     }
-                } else if (choice.equals("3")) {
-                    s.addLocation();
-                } else if (choice.equals("4")) {
-                    System.out.print("Enter city where you want to search: ");
-                    String city = in.nextLine();
-                    List<Location> cityLocations = s.getLocationsInCity(city);
-                    for (Location loc : cityLocations) {
-                        System.out.println(loc.getName() + ", " + loc.getCity());
+                    case "3" : {
+                        s.addLocation();
+                        break;
                     }
-                } else if (choice.equals("5")) {
-                    System.out.print("Enter location name: ");
-                    String name = in.nextLine();
-                    System.out.println(s.checkLocationExist(name));
-                } else if (choice.equals("6")) {
-                    for (Reservation reservation : s.getReservations()) {
-                        System.out.println(reservation.getLocation().getName() + ", "
-                                + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                    case "4" : {
+                        System.out.print("Enter city where you want to search: ");
+                        String city = in.next();
+                        List<Location> cityLocations = s.getLocationsInCity(city);
+                        for (Location loc : cityLocations) {
+                            System.out.println(loc.getName() + ", " + loc.getCity());
+                        }
+                        break;
                     }
-                } else if (choice.equals("7")) {
-                    System.out.print("Enter date in the following format DD/MM/YYYY: ");
-                    String date = in.next();
-                    List<Reservation> myList = s.getReservationsOnDate(date);
-                    for (Reservation reservation : myList) {
-                        System.out.println(reservation.getLocation().getName() + ", "
-                                + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                    case "5" : {
+                        System.out.print("Enter location name: ");
+                        String name = in.next();
+                        System.out.println(s.checkLocationExist(name));
+                        break;
                     }
-                } else if (choice.equals("8")) {
-                    System.out.print("Enter first date in the following format DD/MM/YYYY: ");
-                    String date1 = in.next();
-                    System.out.print("Enter second date in the following format DD/MM/YYYY: ");
-                    String date2 = in.next();
-                    List<Reservation> myList = s.getReservationBetweenDates(date1, date2);
-                    for (Reservation reservation : myList) {
-                        System.out.println(reservation.getLocation().getName() + ", "
-                                + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                    case "6" : {
+                        for (Reservation reservation : s.getReservations()) {
+                            System.out.println(reservation.getLocation().getName() + ", "
+                                    + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                        }
+                        break;
                     }
-                } else if (choice.equals("9")) {
-                    System.out.println("Type of location accepted: Music Hall, Pool, Pub, Restaurant");
-                    System.out.print("Your choice: "); String type = in.next();
-                    for(Reservation reservation : s.getReservationAtTypeOfLocation(type)) {
-                        System.out.println(reservation.getLocation().getName() + ", "
-                                + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                    case "7" : {
+                        System.out.print("Enter date in the following format DD/MM/YYYY: ");
+                        String date = in.next();
+                        List<Reservation> myList = s.getReservationsOnDate(date);
+                        for (Reservation reservation : myList) {
+                            System.out.println(reservation.getLocation().getName() + ", "
+                                    + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                        }
+                        break;
                     }
-                } else if (choice.equals("10")) {
-                    s.makeReservation();
-                } else if (choice.equals("0")) {
-                    break;
-                } else {
-                    System.out.println("Please choose from possible actions");
+                    case "8" : {
+                        System.out.print("Enter first date in the following format DD/MM/YYYY: ");
+                        String date1 = in.next();
+                        System.out.print("Enter second date in the following format DD/MM/YYYY: ");
+                        String date2 = in.next();
+                        List<Reservation> myList = s.getReservationBetweenDates(date1, date2);
+                        for (Reservation reservation : myList) {
+                            System.out.println(reservation.getLocation().getName() + ", "
+                                    + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                        }
+                        break;
+                    }
+                    case "9" : {
+                        System.out.println("Type of location accepted: Music Hall, Pool, Pub, Restaurant");
+                        System.out.print("Your choice: ");
+                        String type = in.next();
+                        for (Reservation reservation : s.getReservationAtTypeOfLocation(type)) {
+                            System.out.println(reservation.getLocation().getName() + ", "
+                                    + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+                        }
+                        break;
+                    }
+                    case "10" : {
+                        s.makeReservation();
+                        break;
+                    }
+                    case "11" : {
+                        s.removeReservation();
+                        break;
+                    }
+                    case "0" : {
+                        end = true;
+                        break;
+                    }
+                    default: {
+                        System.out.println("Please choose from possible actions");
+                    }
                 }
-                menu(); choice = in.next(); System.out.println();
-            }
+            } while (!end);
         } catch (NullPointerException | ParseException e) {
             System.out.println("Mornings like this..");
         }
@@ -123,7 +152,7 @@ public class Main {
                 + "4. Get locations in a city\n5. Check if a location is available by name\n"
                 + "6. See all reservations\n7. See all reservation at a date\n"
                 + "8. See all reservations between two dates\n9. See reservations at one type of location\n"
-                + "10. Make reservation\n0. Exit");
+                + "10. Make reservation\n11. Remove reservation\n0. Exit");
         System.out.print("Your choice: ");
     }
 }
