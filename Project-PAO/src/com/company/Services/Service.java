@@ -403,7 +403,7 @@ public class Service {
         System.out.println("Choose reservation to be removed: ");
         int i = 1;
         for(Reservation reservation : reservations) {
-            System.out.println(i + ". " + reservation.getLocation().getName() + ", " + reservation.getEvent().getName() + ", " + reservation.getEventDate());
+            System.out.println(i + ". " + reservation.getLocation().getName() + ", " + reservation.getEvent().getName() + ", " + reservation.getEvent().getDate());
             i++;
         }
         int indexToRemove = in.nextInt();
