@@ -304,7 +304,7 @@ public class Service {
                     int goldTicketPrice = in.nextInt();
                     System.out.print("Vip ticket price: ");
                     int vipTicketPrice = in.nextInt();
-                    Event event = new ConcertEvent(name, date, singer, normalTicketPrice, goldTicketPrice, vipTicketPrice);
+                    Event event = new ConcertEvent(name, date, singer, normalTicketPrice, vipTicketPrice);
                     reservations.add(new Reservation(location, event));
                     break label;
                 }

@@ -14,8 +14,8 @@ public class StandUpEvent extends Event {
         this.pricePerSeatVIP = pricePerSeatVIP;
     }
 
-    public Guest getComedian() {
-        return comedian;
+    public String getComedian() {
+        return comedian.getName();
     }
 
     public void setComedian(Guest comedian) {

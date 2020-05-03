@@ -1,15 +1,16 @@
 package com.company.Locations;
 
-import java.util.HashSet;
-
 public class Location {
     protected static int ID=0;
     private int id;
     private String name;
     private String city;
     private String country;
-    private HashSet<String> possibleEvents;
     private int maxCapacity;
+
+    public Location() {
+
+    }
 
     public Location(String name, String city, String country, int maxCapacity) {
         this.id = ID++;
@@ -51,14 +52,6 @@ public class Location {
         this.country = country;
     }
 
-    public HashSet<String> getPossibleEvents() {
-        return possibleEvents;
-    }
-
-    public void setPossibleEvents(HashSet<String> possibleEvents) {
-        this.possibleEvents = possibleEvents;
-    }
-
     public int getMaxCapacity() {
         return maxCapacity;
     }
@@ -74,7 +67,6 @@ public class Location {
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
-                ", possibleEvents=" + possibleEvents +
                 ", maxCapacity=" + maxCapacity +
                 '}';
     }

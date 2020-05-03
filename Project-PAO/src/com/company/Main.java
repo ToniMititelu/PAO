@@ -1,19 +1,24 @@
 package com.company;
 
-import com.company.Events.ConcertEvent;
-import com.company.Events.PartyEvent;
-import com.company.Events.PoolPartyEvent;
-import com.company.Events.StandUpEvent;
-import com.company.Guest.Guest;
-import com.company.Locations.*;
-import com.company.Reservations.Reservation;
-import com.company.Services.Service;
+import com.company.Services.csvs.CsvService;
 
+import java.io.IOException;
 import java.text.ParseException;
-import java.util.*;
 
 public class Main {
 
+    public static void main(String[] args) throws ParseException, IOException {
+        CsvService csv = CsvService.CsvService();
+        //csv.readCsvLocations();
+        //csv.display();
+        //csv.writeCsvLocations();
+        //csv.readCsvReservations();
+        csv.display();
+        csv.displayReservations();
+        //csv.writeCsvReservations();
+    }
+
+    /*
     public static void main(String[] args) throws ParseException {
 	// write your code here
         int numberOfTries = 3;
@@ -33,7 +38,7 @@ public class Main {
                         new Reservation(s.getLocations().get(0), new StandUpEvent("Costel Stand-up", "12/05/2020", new Guest("Costel"), 50, 80)),
                         new Reservation(s.getLocations().get(1), new PoolPartyEvent("Pool party", "25/08/2020", 50)),
                         new Reservation(s.getLocations().get(2), new PartyEvent("Wedding", "09/09/2020", new Guest("Guta"), new Guest("Ciolan"))),
-                        new Reservation(s.getLocations().get(3), new ConcertEvent("Vita de vie Concert", "04/04/2020", new Guest("Vita de vie"), 50, 75, 100))
+                        new Reservation(s.getLocations().get(3), new ConcertEvent("Vita de vie Concert", "04/04/2020", new Guest("Vita de vie"), 50, 100))
                 )));
 
                 Scanner in = new Scanner(System.in).useDelimiter("\n");
@@ -162,4 +167,6 @@ public class Main {
                 + "11. Make reservation\n12. Remove reservation\n0. Exit");
         System.out.print("Your choice: ");
     }
+
+     */
 }

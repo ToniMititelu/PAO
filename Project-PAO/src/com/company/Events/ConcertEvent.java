@@ -5,19 +5,17 @@ import com.company.Guest.Guest;
 public class ConcertEvent extends Event {
     private Guest singer;
     private int normalTicketPrice;
-    private int goldTicketPrice;
     private int vipTicketPrice;
 
-    public ConcertEvent(String name, String date, Guest singer, int normalTicketPrice, int goldTicketPrice, int vipTicketPrice) {
+    public ConcertEvent(String name, String date, Guest singer, int normalTicketPrice, int vipTicketPrice) {
         super(name, date);
         this.singer = singer;
         this.normalTicketPrice = normalTicketPrice;
-        this.goldTicketPrice = goldTicketPrice;
         this.vipTicketPrice = vipTicketPrice;
     }
 
-    public Guest getSinger() {
-        return singer;
+    public String getSinger() {
+        return singer.getName();
     }
 
     public void setSinger(Guest singer) {
@@ -30,14 +28,6 @@ public class ConcertEvent extends Event {
 
     public void setNormalTicketPrice(int normalTicketPrice) {
         this.normalTicketPrice = normalTicketPrice;
-    }
-
-    public int getGoldTicketPrice() {
-        return goldTicketPrice;
-    }
-
-    public void setGoldTicketPrice(int goldTicketPrice) {
-        this.goldTicketPrice = goldTicketPrice;
     }
 
     public int getVipTicketPrice() {
@@ -53,7 +43,6 @@ public class ConcertEvent extends Event {
         return "ConcertEvent{" +
                 "singer=" + singer +
                 ", normalTicketPrice=" + normalTicketPrice +
-                ", goldTicketPrice=" + goldTicketPrice +
                 ", vipTicketPrice=" + vipTicketPrice +
                 '}';
     }

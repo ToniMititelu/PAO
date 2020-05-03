@@ -12,16 +12,16 @@ public class PartyEvent extends Event {
         this.photographer = photographer;
     }
 
-    public Guest getSinger() {
-        return singer;
+    public String getSinger() {
+        return singer.getName();
     }
 
     public void setSinger(Guest singer) {
         this.singer = singer;
     }
 
-    public Guest getPhotographer() {
-        return photographer;
+    public String getPhotographer() {
+        return photographer.getName();
     }
 
     public void setPhotographer(Guest photographer) {

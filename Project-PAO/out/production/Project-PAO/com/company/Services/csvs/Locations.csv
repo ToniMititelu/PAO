@@ -1,0 +1,5 @@
+type,id,name,city,country,maxCapacity,hasBar,poolOpenedAtNight,hasScene,nrOfTables,nrOfSeatsAtTable,hasGames,hasCandyBar,pricePerMenu
+Pub,1,Shelter,Bucharest,RO,200,-1,-1,true,40,4,true,-1,-1
+Pool,2,Pool,Bucharest,RO,200,true,true,false,-1,-1,-1,-1,-1
+Restaurant,3,Papito,Cluj,RO,500,-1,-1,-1,100,5,-1,true,100
+Music,4,Sala Palatului,Bucharest,RO,4000,-1,-1,-1,-1,-1,-1,-1,-1
