@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Services.csvs.CsvService;
+import com.company.Services.CsvService;
 
 import java.io.IOException;
 import java.text.ParseException;

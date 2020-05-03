@@ -1,4 +1,4 @@
-package com.company.Services.csvs;
+package com.company.Services;
 
 import com.company.Events.*;
 import com.company.Guest.Guest;
@@ -167,14 +167,19 @@ public class CsvService {
                 Event event;
                 String[] reservation = line.split(csvSplitBy);
                 Location location = findLocationByName(reservation[0]);
-                if (reservation[1].equals("Concert")) {
-                    event = new ConcertEvent(reservation[2], reservation[3], new Guest(reservation[4]), Integer.parseInt(reservation[6]), Integer.parseInt(reservation[7]));
-                } else if(reservation[1].equals("Party")) {
-                    event = new PartyEvent(reservation[2], reservation[3], new Guest(reservation[4]), new Guest(reservation[5]));
-                } else if(reservation[1].equals("Pool")) {
-                    event = new PoolPartyEvent(reservation[2], reservation[3], Integer.parseInt(reservation[6]));
-                } else {
-                    event = new StandUpEvent(reservation[2], reservation[3], new Guest(reservation[4]), Integer.parseInt(reservation[6]), Integer.parseInt(reservation[7]));
+                switch (reservation[1]) {
+                    case "Concert":
+                        event = new ConcertEvent(reservation[2], reservation[3], new Guest(reservation[4]), Integer.parseInt(reservation[6]), Integer.parseInt(reservation[7]));
+                        break;
+                    case "Party":
+                        event = new PartyEvent(reservation[2], reservation[3], new Guest(reservation[4]), new Guest(reservation[5]));
+                        break;
+                    case "Pool":
+                        event = new PoolPartyEvent(reservation[2], reservation[3], Integer.parseInt(reservation[6]));
+                        break;
+                    default:
+                        event = new StandUpEvent(reservation[2], reservation[3], new Guest(reservation[4]), Integer.parseInt(reservation[6]), Integer.parseInt(reservation[7]));
+                        break;
                 }
                 Reservation r = new Reservation(location, event);
                 reservations.add(r);
@@ -185,8 +190,8 @@ public class CsvService {
     }
 
     public void writeCsvReservations() throws IOException {
-        Location location = locations.get(2);
-        Event event = new PoolPartyEvent("PoolV2", "01/07/2019", 35);
+        //Location location = locations.get(2);
+        //Event event = new PoolPartyEvent("PoolV2", "01/07/2019", 35);
         //reservations.add(new Reservation(location, event));
         try (FileWriter writer = new FileWriter(reservationsCSV)) {
             String toWrite = "locationName,eventType,eventName,eventDate,guest1,guest2,normalTicketPrice,vipTicketPrice\n";
