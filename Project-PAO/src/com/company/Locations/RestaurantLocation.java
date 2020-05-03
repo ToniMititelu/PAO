@@ -14,6 +14,14 @@ public class RestaurantLocation extends Location {
         this.pricePerMenu = pricePerMenu;
     }
 
+    public RestaurantLocation(String name, String city, String country, String maxCapacity, String nrOfTables, String nrOfSeatsAtTable, String hasCandyBar, String pricePerMenu) {
+        super(name, city, country, maxCapacity);
+        this.nrOfTables = Integer.parseInt(nrOfTables);
+        this.nrOfSeatsAtTable = Integer.parseInt(nrOfSeatsAtTable);
+        this.hasCandyBar = Boolean.parseBoolean(hasCandyBar);
+        this.pricePerMenu = Integer.parseInt(pricePerMenu);
+    }
+
     public int getNrOfTables() {
         return nrOfTables;
     }

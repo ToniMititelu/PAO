@@ -10,6 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Service {
+    private CsvService csv;
+    private Timestamps t;
+
     private List<Location> locations;
 
     private Set<Reservation> reservations;
@@ -17,11 +20,19 @@ public class Service {
     private Scanner in = new Scanner(System.in).useDelimiter("\n");
 
     public Service() {
+        this.t = Timestamps.getInstance();
+        this.csv = CsvService.getInstance();
 
+        locations = this.csv.getLocations();
+        this.t.writeTimestampsCsv("Import locations");
+
+        reservations = this.csv.getReservations();
+        this.t.writeTimestampsCsv("Import reservations");
     }
 
     // 1. Method to get all possible locations
     public List<Location> getLocations() {
+        this.t.writeTimestampsCsv("Get all locations");
         return locations;
     }
 

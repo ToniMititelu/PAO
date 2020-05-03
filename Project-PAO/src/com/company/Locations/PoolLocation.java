@@ -12,6 +12,13 @@ public class PoolLocation extends Location {
         this.hasScene = hasScene;
     }
 
+    public PoolLocation(String name, String city, String country, String maxCapacity, String hasBar, String poolOpenedAtNight, String hasScene) {
+        super(name, city, country, maxCapacity);
+        this.hasBar = Boolean.parseBoolean(hasBar);
+        this.poolOpenedAtNight = Boolean.parseBoolean(poolOpenedAtNight);
+        this.hasScene = Boolean.parseBoolean(hasScene);
+    }
+
     public boolean isHasBar() {
         return hasBar;
     }

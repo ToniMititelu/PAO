@@ -20,6 +20,14 @@ public class Location {
         this.maxCapacity = maxCapacity;
     }
 
+    public Location(String name, String city, String country, String maxCapacity){
+        this.id = ID++;
+        this.name = name;
+        this.city = city;
+        this.country = country;
+        this.maxCapacity = Integer.parseInt(maxCapacity);
+    }
+
     public int getId() {
         return id;
     }

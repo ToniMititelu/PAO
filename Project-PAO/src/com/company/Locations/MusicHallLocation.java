@@ -6,4 +6,8 @@ public class MusicHallLocation extends Location {
         super(name, city, country, maxCapacity);
     }
 
+    public MusicHallLocation(String name, String city, String country, String maxCapacity) {
+        super(name, city, country, maxCapacity);
+    }
+
 }

@@ -1,32 +1,27 @@
 package com.company;
 
-import com.company.Services.CsvService;
+import com.company.Locations.*;
+import com.company.Reservations.Reservation;
+import com.company.Services.Service;
 
-import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-
+    /*
     public static void main(String[] args) throws ParseException, IOException {
-        CsvService csv = CsvService.CsvService();
+        //CsvService csv = CsvService.getInstance();
         //csv.readCsvLocations();
         //csv.display();
         //csv.writeCsvLocations();
         //csv.readCsvReservations();
-        csv.display();
-        csv.displayReservations();
+        //csv.display();
+        //csv.displayReservations();
         //csv.writeCsvReservations();
-    }
+        Service s = new Service();
 
-    /*
-    public static void main(String[] args) throws ParseException {
-	// write your code here
-        int numberOfTries = 3;
-        while(true) {
-            try {
-                Service s = new Service();
-
-                // Added only for testing
+                        // Added only for testing
                 s.setLocations(new ArrayList<>(Arrays.asList(
                         new PubLocation("Shelter", "Bucharest", "RO", 200, 40, 4, true, false),
                         new PoolLocation("Pool", "Bucharest", "RO", 200, true, true, false),
@@ -40,7 +35,16 @@ public class Main {
                         new Reservation(s.getLocations().get(2), new PartyEvent("Wedding", "09/09/2020", new Guest("Guta"), new Guest("Ciolan"))),
                         new Reservation(s.getLocations().get(3), new ConcertEvent("Vita de vie Concert", "04/04/2020", new Guest("Vita de vie"), 50, 100))
                 )));
+    } */
 
+
+    public static void main(String[] args) throws ParseException {
+	// write your code here
+
+        Service s = new Service();
+        int numberOfTries = 3;
+        while(true) {
+            try {
                 Scanner in = new Scanner(System.in).useDelimiter("\n");
                 boolean end = false;
                 do {
@@ -168,5 +172,5 @@ public class Main {
         System.out.print("Your choice: ");
     }
 
-     */
+
 }

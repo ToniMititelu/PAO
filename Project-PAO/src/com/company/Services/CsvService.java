@@ -30,7 +30,7 @@ public class CsvService {
         this.readCsvReservations();
     }
 
-    public static CsvService CsvService() {
+    public static CsvService getInstance() {
         if(instance == null) {
             instance = new CsvService();
         }
@@ -75,7 +75,6 @@ public class CsvService {
             }
             i++;
         }
-
     }
 
     public void writeCsvLocations() throws IOException {
@@ -221,6 +220,22 @@ public class CsvService {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public ArrayList<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(ArrayList<Location> locations) {
+        this.locations = locations;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public void display() {

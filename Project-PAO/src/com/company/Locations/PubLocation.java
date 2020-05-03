@@ -14,6 +14,14 @@ public class PubLocation extends Location {
         this.hasGames = hasGames;
     }
 
+    public PubLocation(String name, String city, String country, String maxCapacity, String nrOfTables, String nrOfSeatsAtTable, String hasScene, String hasGames) {
+        super(name, city, country, maxCapacity);
+        this.nrOfTables = Integer.parseInt(nrOfTables);
+        this.nrOfSeatsAtTable = Integer.parseInt(nrOfSeatsAtTable);
+        this.hasScene = Boolean.parseBoolean(hasScene);
+        this.hasGames = Boolean.parseBoolean(hasGames);
+    }
+
     public int getNrOfTables() {
         return nrOfTables;
     }
