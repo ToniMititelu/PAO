@@ -1,4 +1,5 @@
-actionName,timestampImport locations,2020-05-03 13:50:55.802
+actionName,timestamp
+Import locations,2020-05-03 13:50:55.802
 Import reservations,2020-05-03 13:50:55.825
 Get all locations,2020-05-03 13:51:02.562
 Get location of a type,2020-05-03 13:51:10.905
@@ -15,3 +16,26 @@ Make reservation,2020-05-03 13:54:08.458
 Remove reservation,2020-05-03 13:54:24.047
 Get reservations,2020-05-03 13:54:27.763
 Get all locations,2020-05-03 13:54:31.881
+Import locations,2020-05-03 14:06:01.765
+Import reservations,2020-05-03 14:06:01.786
+Add location,2020-05-03 14:06:19.545
+Get all locations,2020-05-03 14:06:24.935
+Get reservation on date,2020-05-03 14:06:36.834
+Make reservation,2020-05-03 14:06:46.501
+Get reservations,2020-05-03 14:06:57.212
+Remove reservation,2020-05-03 14:07:10.541
+Delete location,2020-05-03 14:07:38.743
+Get reservations,2020-05-03 14:08:00.556
+Import locations,2020-05-03 14:26:00.889
+Import reservations,2020-05-03 14:26:00.911
+Get reservations,2020-05-03 14:26:07.393
+Import locations,2020-05-03 14:31:08.021
+Import reservations,2020-05-03 14:31:08.043
+Get all locations,2020-05-03 14:31:12.442
+Get reservations,2020-05-03 14:31:24.872
+Update files,2020-05-03 14:31:28.505
+Import locations,2020-05-03 14:31:45.11
+Import reservations,2020-05-03 14:31:45.131
+Get all locations,2020-05-03 14:31:47.529
+Get reservations,2020-05-03 14:31:50.787
+Update files,2020-05-03 14:31:54.87

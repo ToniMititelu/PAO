@@ -6,16 +6,13 @@ import com.company.Locations.*;
 import com.company.Reservations.Reservation;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CsvService {
     private static CsvService instance = null;
     private final String csvSplitBy = ",";
     private String line = "";
-    private ArrayList<Location> locations = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
     private Set<Reservation> reservations = new TreeSet<>();
     private ArrayList<String> csvList = new ArrayList<>(Arrays.asList(
             "src/com/company/Services/csvs/PubLocations.csv",
@@ -180,8 +177,10 @@ public class CsvService {
                         event = new StandUpEvent(reservation[2], reservation[3], new Guest(reservation[4]), Integer.parseInt(reservation[6]), Integer.parseInt(reservation[7]));
                         break;
                 }
-                Reservation r = new Reservation(location, event);
-                reservations.add(r);
+                if(location != null) {
+                    Reservation r = new Reservation(location, event);
+                    reservations.add(r);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -222,11 +221,11 @@ public class CsvService {
         }
     }
 
-    public ArrayList<Location> getLocations() {
+    public List<Location> getLocations() {
         return locations;
     }
 
-    public void setLocations(ArrayList<Location> locations) {
+    public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
 

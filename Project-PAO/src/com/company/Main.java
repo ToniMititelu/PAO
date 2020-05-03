@@ -4,6 +4,7 @@ import com.company.Locations.*;
 import com.company.Reservations.Reservation;
 import com.company.Services.Service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public class Main {
     } */
 
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
 	// write your code here
 
         Service s = new Service();
@@ -146,7 +147,8 @@ public class Main {
                             break;
                         }
                         case "0": {
-                            end = true;
+                            s.writeToFiles();
+                            System.exit(0);
                             break;
                         }
                         default: {
@@ -154,7 +156,7 @@ public class Main {
                         }
                     }
                 } while (!end);
-            } catch (ParseException e) {
+            } catch (ParseException | IOException e) {
                 System.out.println("Seems you got date wrong, please follow the format");
                 if(--numberOfTries == 0) throw e;
                 System.out.println("You have " + numberOfTries + " tries left");

@@ -5,6 +5,7 @@ import com.company.Guest.Guest;
 import com.company.Locations.*;
 import com.company.Reservations.Reservation;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -57,7 +58,7 @@ public class Service {
     }
 
     // 3. Method to add a new location
-    public void addLocation() {
+    public void addLocation() throws IOException {
         System.out.println("Hi, what type of location do you want to add?");
         System.out.println("1. Music Hall" + "\n" + "2. Pool" + "\n" + "3. Pub" + "\n" + "4. Restaurant" + "\n" + "0. Exit");
         String choice = in.next();
@@ -156,6 +157,7 @@ public class Service {
         }
         this.t.writeTimestampsCsv("Add location");
         this.csv.setLocations((ArrayList<Location>) this.locations);
+        this.csv.writeCsvLocations();
     }
 
     // 4. Method to get all possible locations in a given city
@@ -185,7 +187,7 @@ public class Service {
     }
 
     // 6. Delete a location
-    public void deleteLocation() {
+    public void deleteLocation() throws IOException {
         System.out.println("Choose one of the following locations to delete: ");
         int index = 1;
         for(Location location : this.locations) {
@@ -208,6 +210,7 @@ public class Service {
         }
         this.t.writeTimestampsCsv("Delete location");
         this.csv.setLocations((ArrayList<Location>) this.locations);
+        this.csv.writeCsvLocations();
     }
 
     // 7. Method to get all reservations
@@ -290,7 +293,7 @@ public class Service {
     }
 
     // 11. Make reservation
-    public void makeReservation() throws ParseException {
+    public void makeReservation() throws ParseException, IOException {
         System.out.println("Hi! What kind of event would you like to organize?");
         System.out.println("1. Concert" + "\n" + "2. Wedding" + "\n" + "3. Party" + "\n" + "4. Stand-up Comedy");
         System.out.print("Your choice: "); String choice = in.next();
@@ -418,10 +421,11 @@ public class Service {
         }
         this.t.writeTimestampsCsv("Make reservation");
         this.csv.setReservations(this.reservations);
+        this.csv.writeCsvReservations();
     }
 
     // 12. Remove a reservation
-    public void removeReservation() throws ParseException {
+    public void removeReservation() throws ParseException, IOException {
         System.out.println("Choose reservation to be removed: ");
         int i = 1;
         for(Reservation reservation : reservations) {
@@ -439,6 +443,17 @@ public class Service {
         reservations.remove(toRemove);
         this.t.writeTimestampsCsv("Remove reservation");
         this.csv.setReservations(this.reservations);
+        this.csv.writeCsvReservations();
+    }
+
+    public void writeToFiles() throws IOException {
+        this.csv.setLocations(this.locations);
+        this.csv.writeCsvLocations();
+
+        this.csv.setReservations(this.reservations);
+        this.csv.writeCsvReservations();
+
+        this.t.writeTimestampsCsv("Update files");
     }
 
     public void setLocations(List<Location> locations) {
