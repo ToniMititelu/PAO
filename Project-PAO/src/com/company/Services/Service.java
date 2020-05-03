@@ -52,6 +52,7 @@ public class Service {
                 typeReservations.add(current);
             }
         }
+        this.t.writeTimestampsCsv("Get location of a type");
         return typeReservations;
     }
 
@@ -153,6 +154,8 @@ public class Service {
                     break;
             }
         }
+        this.t.writeTimestampsCsv("Add location");
+        this.csv.setLocations((ArrayList<Location>) this.locations);
     }
 
     // 4. Method to get all possible locations in a given city
@@ -165,6 +168,7 @@ public class Service {
                 cityLocations.add(loc);
             }
         }
+        this.t.writeTimestampsCsv("Get locations in city");
         return cityLocations;
     }
 
@@ -176,6 +180,7 @@ public class Service {
                 return true;
             }
         }
+        this.t.writeTimestampsCsv("Check if location exists");
         return false;
     }
 
@@ -201,10 +206,13 @@ public class Service {
         for(Reservation reservation : toRemove) {
             this.reservations.remove(reservation);
         }
+        this.t.writeTimestampsCsv("Delete location");
+        this.csv.setLocations((ArrayList<Location>) this.locations);
     }
 
     // 7. Method to get all reservations
     public Set<Reservation> getReservations() {
+        this.t.writeTimestampsCsv("Get reservations");
         return reservations;
     }
 
@@ -219,6 +227,7 @@ public class Service {
                 dateReservations.add(current);
             }
         }
+        this.t.writeTimestampsCsv("Get reservation on date");
         return dateReservations;
     }
 
@@ -244,6 +253,7 @@ public class Service {
                 dateReservations.add(current);
             }
         }
+        this.t.writeTimestampsCsv("Get reservation between dates");
         return dateReservations;
     }
 
@@ -263,6 +273,7 @@ public class Service {
                 typeReservations.add(current);
             }
         }
+        this.t.writeTimestampsCsv("Get reservations in one type of locations");
         return typeReservations;
     }
 
@@ -312,8 +323,6 @@ public class Service {
                     System.out.print("Normal ticket price: ");
                     int normalTicketPrice = in.nextInt();
                     System.out.print("Gold ticket price: ");
-                    int goldTicketPrice = in.nextInt();
-                    System.out.print("Vip ticket price: ");
                     int vipTicketPrice = in.nextInt();
                     Event event = new ConcertEvent(name, date, singer, normalTicketPrice, vipTicketPrice);
                     reservations.add(new Reservation(location, event));
@@ -407,6 +416,8 @@ public class Service {
                     break;
             }
         }
+        this.t.writeTimestampsCsv("Make reservation");
+        this.csv.setReservations(this.reservations);
     }
 
     // 12. Remove a reservation
@@ -426,6 +437,8 @@ public class Service {
             j++;
         }
         reservations.remove(toRemove);
+        this.t.writeTimestampsCsv("Remove reservation");
+        this.csv.setReservations(this.reservations);
     }
 
     public void setLocations(List<Location> locations) {

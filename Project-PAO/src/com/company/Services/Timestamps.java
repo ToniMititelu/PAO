@@ -23,7 +23,7 @@ public class Timestamps {
 
     public void writeTimestampsCsv(String action) {
         try (FileWriter writer = new FileWriter(timestampCSV, true)) {
-            action = "\n" + action + "," + new Timestamp((new Date()).getTime()).toString();
+            action = action + "," + new Timestamp((new Date()).getTime()).toString() + "\n";
             writer.write(action);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
