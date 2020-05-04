@@ -8,6 +8,15 @@ import com.company.Reservations.Reservation;
 import java.io.*;
 import java.util.*;
 
+/*
+
+    Clasa asta era folosita inainte sa adaug csv reader/writer generic
+    si am pastrat-o doar pentru anumite teste.
+    CsvServiceUsingGenerics este clasa folosita pentru apelarea
+    functiilor de citirea/scrierea in fisier.
+
+ */
+
 public class CsvService {
     private static CsvService instance = null;
     private final String csvSplitBy = ",";
