@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Service {
-    private CsvService csv;
+    private CsvServiceUsingGenerics csv;
     private Timestamps t;
 
     private List<Location> locations;
@@ -22,7 +22,7 @@ public class Service {
 
     public Service() {
         this.t = Timestamps.getInstance();
-        this.csv = CsvService.getInstance();
+        this.csv = CsvServiceUsingGenerics.getInstance();
 
         locations = this.csv.getLocations();
         this.t.writeTimestampsCsv("Import locations");

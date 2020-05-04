@@ -6,6 +6,10 @@ public class PubLocation extends Location {
     private boolean hasScene;
     private boolean hasGames;
 
+    public PubLocation() {
+
+    }
+
     public PubLocation(String name, String city, String country, int maxCapacity, int nrOfTables, int nrOfSeatsAtTable, boolean hasScene, boolean hasGames) {
         super(name, city, country, maxCapacity);
         this.nrOfTables = nrOfTables;
@@ -62,5 +66,29 @@ public class PubLocation extends Location {
                 ", hasScene=" + hasScene +
                 ", hasGames=" + hasGames +
                 '}';
+    }
+
+    @Override
+    public String[] getColumnNames() {
+        return new String[]{"name", "city", "country", "maxCapacity", "nrOfTables", "nrOfSeatsAtTable", "hasScene", "hasGames"};
+    }
+
+    @Override
+    public String[] toStringArray() {
+        return new String[]{getName(), getCity(), getCountry(), Integer.toString(getMaxCapacity()),
+                            Integer.toString(nrOfTables), Integer.toString(nrOfSeatsAtTable),
+                            Boolean.toString(hasScene), Boolean.toString(hasGames)};
+    }
+
+    @Override
+    public void fromStringArray(String[] data) {
+        setName(data[0]);
+        setCity(data[1]);
+        setCountry(data[2]);
+        setMaxCapacity(Integer.parseInt(data[3]));
+        setNrOfTables(Integer.parseInt(data[4]));
+        setNrOfSeatsAtTable(Integer.parseInt(data[5]));
+        setHasScene(Boolean.parseBoolean(data[6]));
+        setHasGames(Boolean.parseBoolean(data[7]));
     }
 }

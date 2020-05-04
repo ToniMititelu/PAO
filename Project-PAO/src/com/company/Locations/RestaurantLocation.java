@@ -6,6 +6,10 @@ public class RestaurantLocation extends Location {
     private boolean hasCandyBar;
     private int pricePerMenu;
 
+    public RestaurantLocation() {
+
+    }
+
     public RestaurantLocation(String name, String city, String country, int maxCapacity, int nrOfTables, int nrOfSeatsAtTable, boolean hasCandyBar, int pricePerMenu) {
         super(name, city, country, maxCapacity);
         this.nrOfTables = nrOfTables;
@@ -62,5 +66,29 @@ public class RestaurantLocation extends Location {
                 ", hasCandyBar=" + hasCandyBar +
                 ", pricePerMenu=" + pricePerMenu +
                 '}';
+    }
+
+    @Override
+    public String[] getColumnNames() {
+        return new String[]{"name", "city", "country", "maxCapacity", "nrOfTables", "nrOfSeatsAtTable", "hasCandyBar", "pricePerMenu"};
+    }
+
+    @Override
+    public String[] toStringArray() {
+        return new String[]{getName(), getCity(), getCountry(), Integer.toString(getMaxCapacity()),
+                            Integer.toString(nrOfTables), Integer.toString(nrOfSeatsAtTable),
+                            Boolean.toString(hasCandyBar), Integer.toString(pricePerMenu)};
+    }
+
+    @Override
+    public void fromStringArray(String[] data) {
+        setName(data[0]);
+        setCity(data[1]);
+        setCountry(data[2]);
+        setMaxCapacity(Integer.parseInt(data[3]));
+        setNrOfTables(Integer.parseInt(data[4]));
+        setNrOfSeatsAtTable(Integer.parseInt(data[5]));
+        setHasCandyBar(Boolean.parseBoolean(data[6]));
+        setPricePerMenu(Integer.parseInt(data[7]));
     }
 }

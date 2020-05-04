@@ -1,9 +1,15 @@
 package com.company.Locations;
 
-public class PoolLocation extends Location {
+import com.company.Services.GenericCsv.CsvSerializable;
+
+public class PoolLocation extends Location implements CsvSerializable {
     private boolean hasBar;
     private boolean poolOpenedAtNight;
     private boolean hasScene;
+
+    public PoolLocation() {
+
+    }
 
     public PoolLocation(String name, String city, String country, int maxCapacity, boolean hasBar, boolean poolOpenedAtNight, boolean hasScene) {
         super(name, city, country, maxCapacity);
@@ -50,5 +56,27 @@ public class PoolLocation extends Location {
                 ", poolOpenedAtNight=" + poolOpenedAtNight +
                 ", hasScene=" + hasScene +
                 '}';
+    }
+
+    @Override
+    public String[] getColumnNames() {
+        return new String[]{"name", "city", "country", "maxCapacity", "hasBar", "poolOpenedAtNight", "hasScene"};
+    }
+
+    @Override
+    public String[] toStringArray() {
+        return new String[]{getName(), getCity(), getCountry(), Integer.toString(getMaxCapacity()),
+                    Boolean.toString(hasBar), Boolean.toString(poolOpenedAtNight), Boolean.toString(hasScene)};
+    }
+
+    @Override
+    public void fromStringArray(String[] data) {
+        setName(data[0]);
+        setCity(data[1]);
+        setCountry(data[2]);
+        setMaxCapacity(Integer.parseInt(data[3]));
+        setHasBar(Boolean.parseBoolean(data[4]));
+        setPoolOpenedAtNight(Boolean.parseBoolean(data[5]));
+        setHasScene(Boolean.parseBoolean(data[6]));
     }
 }

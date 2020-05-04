@@ -1,2 +1,5 @@
 name,city,country,maxCapacity,nrOfTables,nrOfSeatsAtTable,hasScene,hasGames
 Shelter,Bucharest,RO,200,40,4,true,false
+Revenge,Bucharest,RO,100,20,4,false,false
+Player,Craiova,RO,100,10,2,false,true
+Beau,Arad,RO,100,50,2,false,true

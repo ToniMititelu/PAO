@@ -1,2 +1,5 @@
 name,city,country,maxCapacity,hasBar,poolOpenedAtNight,hasScene
 Pool,Bucharest,RO,200,true,true,false
+Therme,Bucharest,RO,300,true,true,true
+AquaPark,Brasov,RO,500,true,false,false
+Rat,Slatina,RO,200,true,false,false

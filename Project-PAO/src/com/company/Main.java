@@ -10,34 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    /*
-    public static void main(String[] args) throws ParseException, IOException {
-        //CsvService csv = CsvService.getInstance();
-        //csv.readCsvLocations();
-        //csv.display();
-        //csv.writeCsvLocations();
-        //csv.readCsvReservations();
-        //csv.display();
-        //csv.displayReservations();
-        //csv.writeCsvReservations();
-        Service s = new Service();
-
-                        // Added only for testing
-                s.setLocations(new ArrayList<>(Arrays.asList(
-                        new PubLocation("Shelter", "Bucharest", "RO", 200, 40, 4, true, false),
-                        new PoolLocation("Pool", "Bucharest", "RO", 200, true, true, false),
-                        new RestaurantLocation("Papito", "Cluj", "RO", 500, 100, 5, true, 100),
-                        new MusicHallLocation("Sala Palatului", "Bucharest", "RO", 4000)
-                )));
-
-                s.setReservations(new TreeSet<>(Arrays.asList(
-                        new Reservation(s.getLocations().get(0), new StandUpEvent("Costel Stand-up", "12/05/2020", new Guest("Costel"), 50, 80)),
-                        new Reservation(s.getLocations().get(1), new PoolPartyEvent("Pool party", "25/08/2020", 50)),
-                        new Reservation(s.getLocations().get(2), new PartyEvent("Wedding", "09/09/2020", new Guest("Guta"), new Guest("Ciolan"))),
-                        new Reservation(s.getLocations().get(3), new ConcertEvent("Vita de vie Concert", "04/04/2020", new Guest("Vita de vie"), 50, 100))
-                )));
-    } */
-
 
     public static void main(String[] args) throws ParseException, IOException {
 	// write your code here
@@ -47,7 +19,6 @@ public class Main {
         while(true) {
             try {
                 Scanner in = new Scanner(System.in).useDelimiter("\n");
-                boolean end = false;
                 do {
                     menu();
                     String choice = in.next();
@@ -155,7 +126,7 @@ public class Main {
                             System.out.println("Please choose from possible actions");
                         }
                     }
-                } while (!end);
+                } while (true);
             } catch (ParseException | IOException e) {
                 System.out.println("Seems you got date wrong, please follow the format");
                 if(--numberOfTries == 0) throw e;
@@ -173,6 +144,5 @@ public class Main {
                 + "11. Make reservation\n12. Remove reservation\n0. Exit");
         System.out.print("Your choice: ");
     }
-
 
 }

@@ -1,6 +1,8 @@
 package com.company.Locations;
 
-public class Location {
+import com.company.Services.GenericCsv.CsvSerializable;
+
+public class Location implements CsvSerializable {
     protected static int ID=0;
     private int id;
     private String name;
@@ -77,5 +79,23 @@ public class Location {
                 ", country='" + country + '\'' +
                 ", maxCapacity=" + maxCapacity +
                 '}';
+    }
+
+    @Override
+    public String[] getColumnNames() {
+        return new String[]{"name", "city", "country", "maxCapacity"};
+    }
+
+    @Override
+    public String[] toStringArray() {
+        return new String[]{getName(), getCity(), getCountry(), Integer.toString(getMaxCapacity())};
+    }
+
+    @Override
+    public void fromStringArray(String[] data) {
+        setName(data[0]);
+        setCity(data[1]);
+        setCountry(data[2]);
+        setMaxCapacity(Integer.parseInt(data[3]));
     }
 }
