@@ -1,5 +1,5 @@
 locationName,eventType,eventName,eventDate,guest1,guest2,normalTicketPrice,vipTicketPrice
-Trr,Concert,BUG Mafia,01/03/2020,BUG Mafia,-,40,60
+Player,StandUp,Giorghiu,01/02/2020,Ghiorghiu,-,15,25
 Shelter,StandUp,Costel Stand-up,12/05/2020,Costel,-,50,80
 Mega Discoteca,Concert,Parazitii Concert,07/07/2020,Parazitii,-,35,50
 Pool,Pool,Pool Party,03/08/2020,-,-,30,-

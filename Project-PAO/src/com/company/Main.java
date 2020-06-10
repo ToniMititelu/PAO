@@ -1,17 +1,19 @@
 package com.company;
 
+import com.company.DB.TestDB;
 import com.company.Locations.*;
 import com.company.Reservations.Reservation;
 import com.company.Services.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException, IOException {
+    public static void main(String[] args) throws ParseException, IOException, SQLException {
 	// write your code here
 
         Service s = new Service();
@@ -117,6 +119,10 @@ public class Main {
                             s.removeReservation();
                             break;
                         }
+                        case "13": {
+                            testDB();
+                            break;
+                        }
                         case "0": {
                             s.writeToFiles();
                             System.exit(0);
@@ -127,7 +133,7 @@ public class Main {
                         }
                     }
                 } while (true);
-            } catch (ParseException | IOException e) {
+            } catch (ParseException | IOException | SQLException e) {
                 System.out.println("Seems you got date wrong, please follow the format");
                 if(--numberOfTries == 0) throw e;
                 System.out.println("You have " + numberOfTries + " tries left");
@@ -141,8 +147,12 @@ public class Main {
                 + "4. Get locations in a city\n5. Check if a location is available by name\n6. Remove location\n"
                 + "7. See all reservations\n8. See all reservation at a date\n"
                 + "9. See all reservations between two dates\n10. See reservations at one type of location\n"
-                + "11. Make reservation\n12. Remove reservation\n0. Exit");
+                + "11. Make reservation\n12. Remove reservation\n13. Test database\n0. Exit");
         System.out.print("Your choice: ");
     }
 
+    public static void testDB() throws SQLException {
+        TestDB test = new TestDB();
+    }
+    
 }
